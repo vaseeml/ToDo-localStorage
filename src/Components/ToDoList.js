@@ -1,13 +1,14 @@
-import { useEffect, useState , useCallback} from "react"
+import { useEffect, useState } from "react"
 export default function ToDoList({toggle , handleEdit}){
     const [ tasks , setTasks] = useState([])
-    const localStorage = useCallback(() => localStorage.getItem('data'), [])
+    // const localStorage = useCallback(() => localStorage.getItem('data'), [])
+    const ls = localStorage.getItem('data')
     useEffect(()=>{
         const data = localStorage.getItem('data')
         const taskData = data ? data : '[]'
         console.log('useEffect Called')
         setTasks(JSON.parse(taskData))
-    },[localStorage])
+    },[ls])
     const handleRemove = (id)=>{
         const confimation = window.confirm('Are You Sure?')
         if(confimation){
